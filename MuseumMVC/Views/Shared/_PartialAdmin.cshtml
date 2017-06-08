@@ -1,0 +1,13 @@
+﻿@if(Session["LoginAdmin"] != null)
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Oversigt", "Index", "Admin", routeValues: null, htmlAttributes: new {title = "Oversigt"})</li>
+        <li>@Html.ActionLink("Log af", "LogOut", "Home", routeValues: null, htmlAttributes: new {id = "Log af"})</li>
+    </ul>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Admin", "Login", "Admin", routeValues: null, htmlAttributes: new { id = "Login" })</li>
+    </ul>
+}

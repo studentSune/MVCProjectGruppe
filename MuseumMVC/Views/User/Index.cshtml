@@ -1,0 +1,63 @@
+﻿@model MuseumMVC.Models.Person
+
+@{
+    ViewBag.Title = "Detaljer";
+}
+
+<h2>Detaljer</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Navn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Navn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Efternavn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Efternavn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tlf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tlf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QrID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QrID)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Rediger", "Edit", new { id = Model.PersonID }) |
+    @Html.ActionLink("Se Indstemplinger", "Timestamps", new { id = Model.PersonID })
+</p>
