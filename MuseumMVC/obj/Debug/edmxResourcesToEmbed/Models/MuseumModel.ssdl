@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MuseumMVC_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Ansat">
+    <Key>
+      <PropertyRef Name="AnsatID" />
+    </Key>
+    <Property Name="AnsatID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AnsTovRelation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FK_AnsatID" Type="int" Nullable="false" />
+    <Property Name="FK_TovholderID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Frivillig">
+    <Key>
+      <PropertyRef Name="FrivilligID" />
+    </Key>
+    <Property Name="FrivilligID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Indstempling">
+    <Key>
+      <PropertyRef Name="IndstemplingID" />
+    </Key>
+    <Property Name="IndstemplingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TidStatus" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tidspunkt" Type="datetime" Nullable="false" />
+    <Property Name="FK_PersonID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Person">
+    <Key>
+      <PropertyRef Name="PersonID" />
+    </Key>
+    <Property Name="PersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Navn" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Efternavn" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tlf" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="QrID" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TovFriRelation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FK_FrivilligID" Type="int" Nullable="false" />
+    <Property Name="FK_TovholderID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tovholder">
+    <Key>
+      <PropertyRef Name="TovholderID" />
+    </Key>
+    <Property Name="TovholderID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Ansat_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Ansat" Type="Self.Ansat" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Ansat">
+        <PropertyRef Name="AnsatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnsTovRelation_Ansat">
+    <End Role="Ansat" Type="Self.Ansat" Multiplicity="1" />
+    <End Role="AnsTovRelation" Type="Self.AnsTovRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ansat">
+        <PropertyRef Name="AnsatID" />
+      </Principal>
+      <Dependent Role="AnsTovRelation">
+        <PropertyRef Name="FK_AnsatID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AnsTovRelation_Tovholder">
+    <End Role="Tovholder" Type="Self.Tovholder" Multiplicity="1" />
+    <End Role="AnsTovRelation" Type="Self.AnsTovRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tovholder">
+        <PropertyRef Name="TovholderID" />
+      </Principal>
+      <Dependent Role="AnsTovRelation">
+        <PropertyRef Name="FK_TovholderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Frivillig_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Frivillig" Type="Self.Frivillig" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Frivillig">
+        <PropertyRef Name="FrivilligID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Indstempling_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Indstempling" Type="Self.Indstempling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Indstempling">
+        <PropertyRef Name="FK_PersonID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TovFriRelation_Frivillig">
+    <End Role="Frivillig" Type="Self.Frivillig" Multiplicity="1" />
+    <End Role="TovFriRelation" Type="Self.TovFriRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Frivillig">
+        <PropertyRef Name="FrivilligID" />
+      </Principal>
+      <Dependent Role="TovFriRelation">
+        <PropertyRef Name="FK_FrivilligID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TovFriRelation_Tovholder">
+    <End Role="Tovholder" Type="Self.Tovholder" Multiplicity="1" />
+    <End Role="TovFriRelation" Type="Self.TovFriRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tovholder">
+        <PropertyRef Name="TovholderID" />
+      </Principal>
+      <Dependent Role="TovFriRelation">
+        <PropertyRef Name="FK_TovholderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tovholder_Person">
+    <End Role="Person" Type="Self.Person" Multiplicity="1" />
+    <End Role="Tovholder" Type="Self.Tovholder" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="PersonID" />
+      </Principal>
+      <Dependent Role="Tovholder">
+        <PropertyRef Name="TovholderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MuseumMVC_DBModelStoreContainer">
+    <EntitySet Name="Ansat" EntityType="Self.Ansat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AnsTovRelation" EntityType="Self.AnsTovRelation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Frivillig" EntityType="Self.Frivillig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Indstempling" EntityType="Self.Indstempling" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Person" EntityType="Self.Person" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TovFriRelation" EntityType="Self.TovFriRelation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tovholder" EntityType="Self.Tovholder" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Ansat_Person" Association="Self.FK_Ansat_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Ansat" EntitySet="Ansat" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnsTovRelation_Ansat" Association="Self.FK_AnsTovRelation_Ansat">
+      <End Role="Ansat" EntitySet="Ansat" />
+      <End Role="AnsTovRelation" EntitySet="AnsTovRelation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AnsTovRelation_Tovholder" Association="Self.FK_AnsTovRelation_Tovholder">
+      <End Role="Tovholder" EntitySet="Tovholder" />
+      <End Role="AnsTovRelation" EntitySet="AnsTovRelation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Frivillig_Person" Association="Self.FK_Frivillig_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Frivillig" EntitySet="Frivillig" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Indstempling_Person" Association="Self.FK_Indstempling_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Indstempling" EntitySet="Indstempling" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TovFriRelation_Frivillig" Association="Self.FK_TovFriRelation_Frivillig">
+      <End Role="Frivillig" EntitySet="Frivillig" />
+      <End Role="TovFriRelation" EntitySet="TovFriRelation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TovFriRelation_Tovholder" Association="Self.FK_TovFriRelation_Tovholder">
+      <End Role="Tovholder" EntitySet="Tovholder" />
+      <End Role="TovFriRelation" EntitySet="TovFriRelation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tovholder_Person" Association="Self.FK_Tovholder_Person">
+      <End Role="Person" EntitySet="Person" />
+      <End Role="Tovholder" EntitySet="Tovholder" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

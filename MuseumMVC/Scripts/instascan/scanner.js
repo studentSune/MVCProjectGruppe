@@ -1,6 +1,5 @@
 ﻿var camList = [];
 var scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-//var indstempling = @Html.Raw(Json.Encode(Model.Indstempling));
 
 function makeList(cameras) {
     if (cameras.length <= 1) {
@@ -16,9 +15,7 @@ function makeList(cameras) {
 
 scanner.addListener('scan', function (content) {
     console.log(content);
-    //document.getElementById("debugger_Content").value = content;
     // Post send vvvv
-    //$.post('https://httpbin.org/post', { id: content }, function (data) {
     $.post('/Home/validateChekIn', { id: content }, function (data) {
         var data = JSON.parse(data);
         if (data.code == 200) {

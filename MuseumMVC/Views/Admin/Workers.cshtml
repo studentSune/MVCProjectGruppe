@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MuseumMVC.Models.Person>
+
+@{
+    ViewBag.Title = "Oversigt";
+}
+
+<h2>Ansatte</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Navn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Efternavn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tlf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QrID)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @if (item.Status == 2)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Navn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Efternavn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tlf)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QrID)
+                </td>
+                <td>
+                    @Html.ActionLink("Rediger", "Edit", new { id = item.PersonID }) |
+                    @Html.ActionLink("Detaljer", "Details", new { id = item.PersonID })
+                </td>
+            }
+        </tr>
+    }
+
+</table>
+
+<p>
+    @Html.ActionLink("Tilbage", "Index")
+</p>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MuseumMVC_DBModelStoreContainer" CdmEntityContainer="DB_Entities">
+    <EntitySetMapping Name="Ansats">
+      <EntityTypeMapping TypeName="MuseumMVC_DBModel.Ansat">
+        <MappingFragment StoreEntitySet="Ansat">
+          <ScalarProperty Name="AnsatID" ColumnName="AnsatID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnsTovRelations">
+      <EntityTypeMapping TypeName="MuseumMVC_DBModel.AnsTovRelation">
+        <MappingFragment StoreEntitySet="AnsTovRelation">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FK_AnsatID" ColumnName="FK_AnsatID" />
+          <ScalarProperty Name="FK_TovholderID" ColumnName="FK_TovholderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Frivilligs">
+      <EntityTypeMapping TypeName="MuseumMVC_DBModel.Frivillig">
+        <MappingFragment StoreEntitySet="Frivillig">
+          <ScalarProperty Name="FrivilligID" ColumnName="FrivilligID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Indstemplings">
+      <EntityTypeMapping TypeName="MuseumMVC_DBModel.Indstempling">
+        <MappingFragment StoreEntitySet="Indstempling">
+          <ScalarProperty Name="IndstemplingID" ColumnName="IndstemplingID" />
+          <ScalarProperty Name="TidStatus" ColumnName="TidStatus" />
+          <ScalarProperty Name="Tidspunkt" ColumnName="Tidspunkt" />
+          <ScalarProperty Name="FK_PersonID" ColumnName="FK_PersonID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Persons">
+      <EntityTypeMapping TypeName="MuseumMVC_DBModel.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="Navn" ColumnName="Navn" />
+          <ScalarProperty Name="Efternavn" ColumnName="Efternavn" />
+          <ScalarProperty Name="Tlf" ColumnName="Tlf" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="QrID" ColumnName="QrID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TovFriRelations">
+      <EntityTypeMapping TypeName="MuseumMVC_DBModel.TovFriRelation">
+        <MappingFragment StoreEntitySet="TovFriRelation">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="FK_FrivilligID" ColumnName="FK_FrivilligID" />
+          <ScalarProperty Name="FK_TovholderID" ColumnName="FK_TovholderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tovholders">
+      <EntityTypeMapping TypeName="MuseumMVC_DBModel.Tovholder">
+        <MappingFragment StoreEntitySet="Tovholder">
+          <ScalarProperty Name="TovholderID" ColumnName="TovholderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
