@@ -271,6 +271,7 @@
     <Content Include="Views\User\Timestamps.cshtml" />
     <Content Include="Views\Admin\Timestamps.cshtml" />
     <Content Include="Views\Home\TjekIndTjekUd.cshtml" />
+    <Content Include="Views\Admin\Workers.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

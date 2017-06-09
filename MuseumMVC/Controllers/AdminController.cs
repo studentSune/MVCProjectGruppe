@@ -65,6 +65,19 @@ namespace MuseumMVC.Controllers
             }
         }
 
+        public ActionResult Workers(Person model)
+        {
+            if (Session["LoginAdmin"] != null)
+            {
+                var persons = db.Persons.Include(p => p.Ansat).Include(p => p.Frivillig).Include(p => p.Tovholder);
+                return View(persons.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
         // GET: Person
         public ActionResult Index(Person model)
         {
